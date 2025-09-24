@@ -1,11 +1,25 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Search, Menu, X, User } from "lucide-react";
+import { ShoppingCart, Search, Menu, X, User, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    const { error } = await signOut();
+    if (error) {
+      toast.error('Error signing out');
+    } else {
+      toast.success('Signed out successfully');
+      navigate('/');
+    }
+  };
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -49,9 +63,23 @@ const Navigation = () => {
             <Button variant="ghost" size="icon">
               <Search className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
-            </Button>
+            {user ? (
+              <>
+                <span className="text-sm text-muted-foreground max-w-[150px] truncate">
+                  {user.email}
+                </span>
+                <Button variant="ghost" size="icon" onClick={handleSignOut}>
+                  <LogOut className="h-5 w-5" />
+                </Button>
+              </>
+            ) : (
+              <Button asChild>
+                <Link to="/auth">
+                  <User className="h-4 w-4 mr-2" />
+                  Sign In
+                </Link>
+              </Button>
+            )}
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingCart className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center">
@@ -89,16 +117,30 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="flex items-center space-x-4 pt-4 border-t border-border">
-                <Button variant="ghost" size="sm">
+              <div className="flex flex-col space-y-2 pt-4 border-t border-border">
+                <Button variant="ghost" size="sm" className="justify-start">
                   <Search className="h-4 w-4 mr-2" />
                   Search
                 </Button>
-                <Button variant="ghost" size="sm">
-                  <User className="h-4 w-4 mr-2" />
-                  Account
-                </Button>
-                <Button variant="ghost" size="sm">
+                {user ? (
+                  <>
+                    <span className="text-sm text-muted-foreground px-3 py-2">
+                      {user.email}
+                    </span>
+                    <Button variant="ghost" size="sm" onClick={handleSignOut} className="justify-start">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <Button asChild variant="ghost" size="sm" className="justify-start">
+                    <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
+                      <User className="h-4 w-4 mr-2" />
+                      Sign In
+                    </Link>
+                  </Button>
+                )}
+                <Button variant="ghost" size="sm" className="justify-start">
                   <ShoppingCart className="h-4 w-4 mr-2" />
                   Cart (0)
                 </Button>
