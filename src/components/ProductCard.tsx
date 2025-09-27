@@ -11,9 +11,10 @@ interface ProductCardProps {
   image: string;
   category: string;
   description: string;
+  skillLevel?: 'Beginner' | 'Intermediate' | 'Pro';
 }
 
-const ProductCard = ({ id, name, price, image, category, description }: ProductCardProps) => {
+const ProductCard = ({ id, name, price, image, category, description, skillLevel }: ProductCardProps) => {
   return (
     <Card className="group overflow-hidden border border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       <div className="relative aspect-[4/3] overflow-hidden">
@@ -25,10 +26,15 @@ const ProductCard = ({ id, name, price, image, category, description }: ProductC
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-        <div className="absolute top-3 left-3">
+        <div className="absolute top-3 left-3 flex flex-col gap-1">
           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
             {category}
           </span>
+          {skillLevel && (
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20">
+              {skillLevel}
+            </span>
+          )}
         </div>
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="flex space-x-2">
@@ -38,7 +44,7 @@ const ProductCard = ({ id, name, price, image, category, description }: ProductC
             </Button>
             <Button size="sm" className="bg-primary/95 backdrop-blur">
               <ShoppingCart className="h-4 w-4 mr-1" />
-              Add
+              Get Access
             </Button>
           </div>
         </div>
@@ -60,7 +66,7 @@ const ProductCard = ({ id, name, price, image, category, description }: ProductC
               ${price}
             </span>
             <Button size="sm" variant="minimal">
-              Learn More
+              Get Started
             </Button>
           </div>
         </div>

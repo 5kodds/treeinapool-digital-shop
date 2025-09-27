@@ -12,53 +12,56 @@ import productAnalytics from "@/assets/product-analytics.jpg";
 import heroBackground from "@/assets/hero-background.jpg";
 
 const Home = () => {
-  const featuredProducts = [
+  const featuredAITools = [
     {
       id: "1",
-      name: "Premium UI Dashboard Kit",
-      price: 49,
+      name: "InstaContent Writer",
+      price: 29,
       image: productDashboard,
-      category: "UI/UX",
-      description: "Professional dashboard components with modern design patterns and clean code structure."
+      category: "Content Creation",
+      skillLevel: "Beginner" as const,
+      description: "AI-powered content writer that creates engaging blog posts, social media content, and marketing copy in minutes."
     },
     {
       id: "2",
-      name: "Website Template Collection",
-      price: 79,
+      name: "Image Stylist AI",
+      price: 19,
       image: productTemplates,
-      category: "Templates",
-      description: "Ready-to-use website templates for various industries with responsive design."
+      category: "Art & Design", 
+      skillLevel: "Beginner" as const,
+      description: "Transform your photos with AI-powered filters, effects, and artistic styles. No design experience needed."
     },
     {
       id: "3",
-      name: "Analytics Dashboard Pro",
-      price: 129,
+      name: "Sentiment Analysis API",
+      price: 99,
       image: productAnalytics,
-      category: "Tools",
-      description: "Advanced analytics dashboard with data visualization and reporting features."
+      category: "Data & APIs",
+      skillLevel: "Pro" as const,
+      description: "Advanced sentiment analysis API for developers to analyze customer feedback, reviews, and social media mentions."
     }
   ];
 
   const features = [
     {
       icon: <Star className="h-6 w-6" />,
-      title: "Premium Quality",
-      description: "Carefully crafted digital products that meet the highest standards of design and functionality."
+      title: "Easy No-Code Tools",
+      description: "Start in minutes with intuitive AI tools that require no technical expertise or coding knowledge."
     },
     {
       icon: <Shield className="h-6 w-6" />,
-      title: "Secure Payments",
-      description: "Multiple payment options including cryptocurrency, credit cards, and bank transfers."
+      title: "Powerful APIs",
+      description: "Scalable AI models and robust APIs for developers to build advanced automation workflows."
     },
     {
       icon: <Zap className="h-6 w-6" />,
-      title: "Instant Download",
-      description: "Get immediate access to your purchases with our instant download system."
+      title: "Instant Access",
+      description: "Get immediate access to AI tools and start automating your work within minutes of purchase."
     },
     {
       icon: <Award className="h-6 w-6" />,
-      title: "Expert Support",
-      description: "Professional support team ready to assist you with any questions or issues."
+      title: "Creative Power",
+      description: "Unlock your potential with AI tools designed for content creation, design, and business automation."
     }
   ];
 
@@ -79,15 +82,15 @@ const Home = () => {
         <div className="container-custom relative">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="heading-xl mb-6">
-              What's an experience{" "}
-              <span className="text-primary">better?</span>
+              Unlock Your Potential with AI:{" "}
+              <span className="text-primary">Tools for Everyone</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              Discover premium digital products designed for creatives, entrepreneurs, and professionals who demand excellence.
+              From simple no-code solutions for beginners to powerful APIs for developers, find the perfect AI tool to elevate your work.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="xl" variant="hero" className="group">
-                Explore Products
+                Explore AI Tools
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button size="xl" variant="outline">
@@ -102,19 +105,19 @@ const Home = () => {
       <section className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <h2 className="heading-lg mb-4">Featured Products</h2>
+            <h2 className="heading-lg mb-4">Featured AI Tools</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Handpicked digital products that deliver exceptional value and quality
+              Handpicked AI solutions that deliver exceptional value for beginners and professionals
             </p>
           </div>
           <div className="grid-products">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} {...product} />
+            {featuredAITools.map((tool) => (
+              <ProductCard key={tool.id} {...tool} />
             ))}
           </div>
           <div className="text-center mt-12">
             <Button size="lg" variant="outline">
-              View All Products
+              View All AI Tools
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
@@ -125,9 +128,9 @@ const Home = () => {
       <section className="section-padding bg-surface">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <h2 className="heading-lg mb-4">Why Choose Treeinapool?</h2>
+            <h2 className="heading-lg mb-4">Why Choose Our AI Marketplace?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We're committed to providing the best digital products and customer experience
+              We're committed to providing the best AI tools and services for every skill level
             </p>
           </div>
           <div className="grid-features">
@@ -156,7 +159,7 @@ const Home = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="heading-lg mb-6">About Treeinapool</h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              We're a team of passionate creators dedicated to crafting premium digital products that empower businesses and individuals to achieve their goals. Our mission is to bridge the gap between exceptional design and practical functionality.
+              We're a team of AI enthusiasts dedicated to curating the best AI tools and services for creators, entrepreneurs, and developers. Our mission is to democratize AI technology and make it accessible to everyone, regardless of technical skill level.
             </p>
             <Button size="lg" variant="outline">
               Learn Our Story
@@ -175,7 +178,7 @@ const Home = () => {
             </div>
             <h2 className="heading-md mb-4">Stay Updated</h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Get notified about new products, exclusive offers, and design insights
+              Get notified about new AI tools, exclusive offers, and latest AI insights
             </p>
             <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <Input
@@ -203,16 +206,17 @@ const Home = () => {
                 <span className="font-heading text-xl font-bold">Treeinapool</span>
               </div>
               <p className="text-muted-foreground">
-                Premium digital products for modern creators and entrepreneurs.
+                AI tools and services for creators, entrepreneurs, and developers.
               </p>
             </div>
             <div>
-              <h3 className="font-heading font-semibold mb-4">Products</h3>
+              <h3 className="font-heading font-semibold mb-4">AI Categories</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="link-subtle">UI Kits</a></li>
-                <li><a href="#" className="link-subtle">Templates</a></li>
-                <li><a href="#" className="link-subtle">Tools</a></li>
-                <li><a href="#" className="link-subtle">Resources</a></li>
+                <li><a href="#" className="link-subtle">Content Creation</a></li>
+                <li><a href="#" className="link-subtle">Art & Design</a></li>
+                <li><a href="#" className="link-subtle">Productivity</a></li>
+                <li><a href="#" className="link-subtle">Business Tools</a></li>
+                <li><a href="#" className="link-subtle">Data & APIs</a></li>
               </ul>
             </div>
             <div>

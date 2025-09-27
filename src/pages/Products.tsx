@@ -17,63 +17,70 @@ const Products = () => {
   const [sortBy, setSortBy] = useState("newest");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  const products = [
+  const aiTools = [
     {
       id: "1",
-      name: "Premium UI Dashboard Kit",
-      price: 49,
+      name: "InstaContent Writer",
+      price: 29,
       image: productDashboard,
-      category: "ui-ux",
-      description: "Professional dashboard components with modern design patterns and clean code structure. Perfect for admin panels and data visualization."
+      category: "content-creation",
+      skillLevel: "Beginner" as const,
+      description: "AI-powered content writer that creates engaging blog posts, social media content, and marketing copy in minutes."
     },
     {
       id: "2",
-      name: "Website Template Collection",
-      price: 79,
+      name: "Image Stylist AI",
+      price: 19,
       image: productTemplates,
-      category: "templates",
-      description: "Ready-to-use website templates for various industries with responsive design and modern aesthetics."
+      category: "art-design",
+      skillLevel: "Beginner" as const,
+      description: "Transform your photos with AI-powered filters, effects, and artistic styles. No design experience needed."
     },
     {
       id: "3",
-      name: "Analytics Dashboard Pro",
-      price: 129,
+      name: "Sentiment Analysis API",
+      price: 99,
       image: productAnalytics,
-      category: "tools",
-      description: "Advanced analytics dashboard with data visualization and reporting features for business intelligence."
+      category: "data-apis",
+      skillLevel: "Pro" as const,
+      description: "Advanced sentiment analysis API for developers to analyze customer feedback, reviews, and social media mentions."
     },
     {
       id: "4",
-      name: "Mobile App UI Kit",
-      price: 69,
+      name: "Automated Workflow Builder",
+      price: 49,
       image: productDashboard,
-      category: "ui-ux",
-      description: "Complete mobile app UI kit with components for iOS and Android applications."
+      category: "productivity",
+      skillLevel: "Intermediate" as const,
+      description: "Create complex automated workflows without coding. Connect apps and automate repetitive tasks effortlessly."
     },
     {
       id: "5",
-      name: "E-commerce Template Bundle",
-      price: 99,
+      name: "Smart Business Assistant",
+      price: 79,
       image: productTemplates,
-      category: "templates",
-      description: "Professional e-commerce templates with shopping cart, product pages, and checkout flows."
+      category: "business-tools",
+      skillLevel: "Beginner" as const,
+      description: "AI assistant that helps with scheduling, email management, and business process optimization."
     },
     {
       id: "6",
-      name: "Marketing Analytics Tool",
-      price: 89,
+      name: "Voice Clone Studio",
+      price: 159,
       image: productAnalytics,
-      category: "tools",
-      description: "Comprehensive marketing analytics tool with campaign tracking and performance metrics."
+      category: "art-design",
+      skillLevel: "Pro" as const,
+      description: "Professional voice cloning and synthesis API for creating realistic voiceovers and audio content."
     }
   ];
 
   const categories = [
-    { value: "all", label: "All Categories" },
-    { value: "ui-ux", label: "UI/UX" },
-    { value: "templates", label: "Templates" },
-    { value: "tools", label: "Tools" },
-    { value: "resources", label: "Resources" }
+    { value: "all", label: "All Use Cases" },
+    { value: "content-creation", label: "Content Creation" },
+    { value: "art-design", label: "Art & Design" },
+    { value: "productivity", label: "Productivity" },
+    { value: "business-tools", label: "Business Tools" },
+    { value: "data-apis", label: "Data & APIs" }
   ];
 
   const sortOptions = [
@@ -84,10 +91,10 @@ const Products = () => {
     { value: "name", label: "Name A-Z" }
   ];
 
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          product.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
+  const filteredAITools = aiTools.filter(tool => {
+    const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          tool.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === "all" || tool.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -99,9 +106,9 @@ const Products = () => {
       <section className="bg-surface border-b border-border">
         <div className="container-custom py-16">
           <div className="text-center">
-            <h1 className="heading-lg mb-4">Our Products</h1>
+            <h1 className="heading-lg mb-4">AI Tools & Services</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover our collection of premium digital products designed to elevate your projects
+              Discover our collection of AI tools and services designed for every skill level - from beginners to professionals
             </p>
           </div>
         </div>
@@ -115,7 +122,7 @@ const Products = () => {
               <div className="relative flex-1 max-w-sm">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search products..."
+                  placeholder="Search AI tools..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -171,19 +178,19 @@ const Products = () => {
         <div className="container-custom">
           <div className="mb-8 flex items-center justify-between">
             <p className="text-muted-foreground">
-              Showing {filteredProducts.length} of {products.length} products
+              Showing {filteredAITools.length} of {aiTools.length} AI tools
             </p>
           </div>
           
-          {filteredProducts.length > 0 ? (
+          {filteredAITools.length > 0 ? (
             <div className={viewMode === "grid" ? "grid-products" : "space-y-6"}>
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} {...product} />
+              {filteredAITools.map((tool) => (
+                <ProductCard key={tool.id} {...tool} />
               ))}
             </div>
           ) : (
             <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg mb-4">No products found</p>
+              <p className="text-muted-foreground text-lg mb-4">No AI tools found</p>
               <p className="text-muted-foreground mb-8">Try adjusting your search or filter criteria</p>
               <Button variant="outline" onClick={() => {
                 setSearchTerm("");
