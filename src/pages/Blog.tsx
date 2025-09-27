@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { useBlogPosts } from '@/hooks/useBlogPosts';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -69,11 +70,15 @@ export default function Blog() {
                   </CardHeader>
                   <CardContent>
                     {post.featured_image_url && (
-                      <img
-                        src={post.featured_image_url}
-                        alt={post.title}
-                        className="w-full h-48 object-cover rounded-md mb-4"
-                      />
+                      <div className="mb-4">
+                        <OptimizedImage
+                          src={post.featured_image_url}
+                          alt={post.title}
+                          aspectRatio="16/9"
+                          className="rounded-md"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </div>
                     )}
                     <p className="text-muted-foreground">
                       {post.excerpt || post.content.substring(0, 200) + '...'}

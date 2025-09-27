@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import Navigation from "@/components/Navigation";
 import { ShoppingCart, Heart, Share2, Download, Shield, Clock } from "lucide-react";
 
@@ -66,22 +67,39 @@ Perfect for SaaS applications, admin panels, analytics dashboards, and more. All
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Product Image */}
           <div className="space-y-4">
-            <div className="aspect-[4/3] rounded-lg overflow-hidden border border-border">
-              <img
+            <div className="rounded-lg overflow-hidden border border-border">
+              <OptimizedImage
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                aspectRatio="4/3"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
             <div className="grid grid-cols-3 gap-4">
-              <div className="aspect-square rounded-lg overflow-hidden border border-border opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
-                <img src={product.image} alt="Preview 1" className="w-full h-full object-cover" />
+              <div className="rounded-lg overflow-hidden border border-border opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+                <OptimizedImage 
+                  src={product.image} 
+                  alt="Preview 1" 
+                  aspectRatio="1/1"
+                  sizes="(max-width: 1024px) 33vw, 16vw"
+                />
               </div>
-              <div className="aspect-square rounded-lg overflow-hidden border border-border opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
-                <img src={productTemplates} alt="Preview 2" className="w-full h-full object-cover" />
+              <div className="rounded-lg overflow-hidden border border-border opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+                <OptimizedImage 
+                  src={productTemplates} 
+                  alt="Preview 2" 
+                  aspectRatio="1/1"
+                  sizes="(max-width: 1024px) 33vw, 16vw"
+                />
               </div>
-              <div className="aspect-square rounded-lg overflow-hidden border border-border opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
-                <img src={productAnalytics} alt="Preview 3" className="w-full h-full object-cover" />
+              <div className="rounded-lg overflow-hidden border border-border opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+                <OptimizedImage 
+                  src={productAnalytics} 
+                  alt="Preview 3" 
+                  aspectRatio="1/1"
+                  sizes="(max-width: 1024px) 33vw, 16vw"
+                />
               </div>
             </div>
           </div>

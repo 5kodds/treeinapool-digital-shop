@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { ShoppingCart, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -16,10 +17,12 @@ const ProductCard = ({ id, name, price, image, category, description }: ProductC
   return (
     <Card className="group overflow-hidden border border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       <div className="relative aspect-[4/3] overflow-hidden">
-        <img
+        <OptimizedImage
           src={image}
           alt={name}
-          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+          aspectRatio="4/3"
+          className="group-hover:scale-105 transition-transform duration-300"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
         <div className="absolute top-3 left-3">
